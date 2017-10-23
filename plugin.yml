@@ -1,0 +1,11 @@
+name: SilverToolbox
+main: io.github.Alligrater.SilverToolbox
+version: 3.1.1
+description: Manage Most Of The Things In The Server With A GUI Interface
+commands:
+  toolbox: 
+    description: open up a toolbox to use
+    usage: /toolbox
+  manage: 
+    description: manage a player
+    usage: /manage [Playername]
