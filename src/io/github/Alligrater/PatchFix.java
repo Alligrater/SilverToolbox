@@ -797,11 +797,10 @@ public class PatchFix implements CommandExecutor, Listener{
 		}
 	}
 
-	public Plugin[] bsort(Plugin[] input) {
-		Plugin[] plugins = input.clone();
-		for(int i = 1; i < plugins.length; i++) {
-			for(int j = 0; j < plugins.length-i; j++) {
-				if(plugins[j].getName().charAt(0) < plugins[i].getName().charAt(j+1)) {
+	public Plugin[] bsort(Plugin[] plugins) {
+		for(int i = 0; i < plugins.length; i++) {
+			for(int j = 0; j < plugins.length-i-1; j++) {
+				if(plugins[j].getName().charAt(0) < plugins[j+1].getName().charAt(0)) {
 					
 				}
 				else {
