@@ -1,8 +1,5 @@
 package io.github.Alligrater;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,11 +17,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerChatEvent;
-import org.bukkit.event.player.PlayerChatTabCompleteEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -33,6 +27,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+@SuppressWarnings("deprecation")
 public class PatchFix implements CommandExecutor, Listener{
 	
 	@Override
@@ -151,11 +146,11 @@ public class PatchFix implements CommandExecutor, Listener{
         sdmeta.setDisplayName("¡ìb¡ìlServerInfo");
         List<String> sub = new ArrayList<String>();
 
-        sub.add("¡ì7Server: " + Bukkit.getServerName());
-        sub.add("¡ì7ServerIP: " + Bukkit.getServer().getIp());
-        sub.add("¡ì7STBVersion: " + Bukkit.getPluginManager().getPlugin("SilverToolbox").getDescription().getVersion());
+        sub.add("¡ì7ServerName: " + Bukkit.getServerName());
+        sub.add("¡ì7ServerIP: " + SilverToolbox.ip + ":" + Bukkit.getServer().getPort());
         sub.add("¡ì7BukkitVersion: " + Bukkit.getServer().getBukkitVersion());
-        sub.add("¡ì7VersionInfo: " + Bukkit.getServer().getVersion());
+        sub.add("¡ì7BukkitType: " + Bukkit.getServer().getVersion());
+        sub.add("¡ì7STBVersion: " + Bukkit.getPluginManager().getPlugin("SilverToolbox").getDescription().getVersion());
         sdmeta.setLore(sub);
         sdown.setItemMeta(sdmeta);
 		
@@ -723,7 +718,6 @@ public class PatchFix implements CommandExecutor, Listener{
 	
 	
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerchat(PlayerChatEvent event) {
 		if(event.getMessage().startsWith("*") && event.getPlayer().hasPermission("SilverToolbox.Tool")) {
@@ -817,6 +811,8 @@ public class PatchFix implements CommandExecutor, Listener{
 		return plugins;
 		
 	}
+	
+
 
 	
 }

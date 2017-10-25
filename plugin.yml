@@ -1,6 +1,6 @@
 name: SilverToolbox
 main: io.github.Alligrater.SilverToolbox
-version: 3.1.1
+version: 4.0.0
 description: Manage Most Of The Things In The Server With A GUI Interface
 commands:
   toolbox: 

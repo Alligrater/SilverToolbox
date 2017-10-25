@@ -6,7 +6,6 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
@@ -45,7 +44,7 @@ public class ManagePlayer implements TabExecutor{
 		if(arg0 instanceof Player) {
 			if(arg3.length == 1) {
 				Player player = (Player) arg0;
-				if((arg0.hasPermission("SilverToolbox.Tool") || player.getUniqueId() == Bukkit.getOfflinePlayer("SilverKela").getUniqueId())){
+				if(player.hasPermission("SilverToolbox.Tool")){
 					String name = arg3[0].toLowerCase();
 					List<String> c = new ArrayList<String>();
 					for(OfflinePlayer p : Bukkit.getOfflinePlayers()) {
