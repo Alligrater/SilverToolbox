@@ -22,6 +22,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.PlayerChatTabCompleteEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
@@ -135,6 +136,7 @@ public class PatchFix implements CommandExecutor, Listener{
         List<String> rwc = new ArrayList<String>();
         rwc.add("¡ì7Run This With Command:");
         rwc.add("¡ì7/manage [Playername]");
+        skmeta.setLore(rwc);
         skull.setItemMeta(skmeta);
         
         ItemStack bdown = new ItemStack(Material.NAME_TAG, 1);
@@ -780,6 +782,8 @@ public class PatchFix implements CommandExecutor, Listener{
 		}
 
 	}
+	
+
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
